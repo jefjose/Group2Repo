@@ -1,4 +1,6 @@
 <x-app-layout>
+    <link rel="stylesheet" href="{{ asset('css/background-admin.css') }}">
+    <div class="background">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight">
             {{ __('Bookings') }}

@@ -1,17 +1,44 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('UrbanReserve') }}
-        </h2>
-    </x-slot>
+    <body>
+        <link rel="stylesheet" href="{{ asset('css/style-index.css') }}">
+        <div class="background">
+        
+            <div class="row">
+                <div class="col">
+                    <h1>UrbanReserve</h1>
+                    <p>Unlocking Premier Venue Experiences</p>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+                </div>
+                
+                <div class="col">
+                    <div class="venue venue1">
+                        <h5>Birthday Parties</h5>
+                    </div>
+
+                    <div class="venue venue2">
+                        <h5>Wedding Receptions</h5>
+                    </div>
+
+                    <div class="venue venue3">
+                        <h5>Corporate Events</h5>
+                    </div>
+
+                    <div class="venue venue4">
+                        <h5>Baptism Receptions</h5>
+                    </div>
+
+                    <div class="venue venue5">
+                        <h5>Family Reunion</h5>
+                    </div>
+
+                    <div class="venue venue6">
+                        <h5>Engagement Party</h5>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    
+
+        </div>
+
+    </body>
 </x-app-layout>

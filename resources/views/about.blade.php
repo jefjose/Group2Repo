@@ -1,15 +1,41 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('About Us') }}
-        </h2>
-    </x-slot>
+    <body>
+        <link rel="stylesheet" href="{{ asset('css/style-about.css') }}">
+        <div class="background">
+            
+            <h2>
+                About Us
+            </h2>
+            <div class="row">
+                <div class="col">
+                    <div class="venue venue1">
+                        <h5>Birthday Parties</h5>
+                    </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+                    <div class="venue venue2">
+                        <h5>Wedding Receptions</h5>
+                    </div>
+
+                    <div class="venue venue3">
+                        <h5>Corporate Events</h5>
+                    </div>
+
+                    <div class="venue venue4">
+                        <h5>Baptism Receptions</h5>
+                    </div>
+
+                    <div class="venue venue5">
+                        <h5>Family Reunion</h5>
+                    </div>
+
+                    <div class="venue venue6">
+                        <h5>Engagement Party</h5>
+                    </div>
+                </div>
             </div>
+
+
         </div>
-    </div>
+
+    </body>
 </x-app-layout>
