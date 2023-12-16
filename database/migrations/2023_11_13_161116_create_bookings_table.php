@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('event_address');
             $table->string('status')->default('For Review');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

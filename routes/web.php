@@ -16,14 +16,21 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
+    return view('index');
+})->name('index');
+
+Route::get('/home', function () {
     return view('welcome');
-})->name('home');;
+})->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('user.dashboard')->middleware('auth', 'registered');
 
 Route::get('/book', function () {
     return view('book');
-})->name('book')->middleware('auth');
+})->name('book')->middleware('auth', 'registered');
 
 Route::post('/booking', function (Request $request) {
     $data = $request->validate([
@@ -41,7 +48,7 @@ Route::post('/booking', function (Request $request) {
     Booking::create($data);
 
     return Redirect::route('home')->with('success', 'Booking created successfully');
-})->name('booking.store');
+})->name('booking.store')->middleware('auth', 'registered');
 
 Route::get('/about', function () {
     return view('about');
@@ -54,7 +61,7 @@ Route::get('/admin', function () {
 
     // Pass the bookings data to the 'admin' view
     return view('admin', compact('bookings', 'users'));
-})->name('admin.dashboard');
+})->name('admin.dashboard')->middleware('auth', 'admin');
 
 Route::patch('bookings/{booking}', function (Request $request, Booking $booking) {
     $request->validate([
@@ -65,14 +72,14 @@ Route::patch('bookings/{booking}', function (Request $request, Booking $booking)
 
     return Redirect::route('admin.dashboard')
         ->with('success', 'Booking status updated successfully');
-})->name('booking.update');
+})->name('booking.update')->middleware('auth', 'admin');
 
 Route::delete('bookings/{booking}', function (Booking $booking) {
     $booking->delete();
 
     return Redirect::route('admin.dashboard')
         ->with('success', 'Booking deleted successfully');
-})->name('booking.destroy');
+})->name('booking.destroy')->middleware('auth', 'admin');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

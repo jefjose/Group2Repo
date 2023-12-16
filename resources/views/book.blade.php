@@ -5,32 +5,33 @@
         </h2>
     </x-slot>
 
-    <x-booking-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+    <link rel="stylesheet" href="{{ asset('css/style-index.css') }}">
 
         <x-validation-errors class="mb-4" />
-
-        <form method="POST" action="{{ route('booking.store') }}">
+        <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <form method="POST" action="{{ route('booking.store') }}" onsubmit="return confirm('Are you sure you want to submit this appoointment?')">
             @csrf
 
-            <div>
+            <div style="margin-top: 20px">
                 <x-label for="event_type" value="{{ __('Event Type') }}" />
                 <x-input id="event_type" class="block mt-1 w-full" type="text" name="event_type" :value="old('event_type')" required autofocus autocomplete="event_type" />
             </div>
 
-            <div>
+            @php
+                $minDate = now()->addWeek()->format('Y-m-d');
+            @endphp
+
+            <div style="margin-top: 20px">
                 <x-label for="event_date" value="{{ __('Event Date') }}" />
-                <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date" :value="old('event_date')" required autofocus autocomplete="event_date" />
+                <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date" :value="old('event_date')" min="{{ $minDate }}" required autofocus autocomplete="event_date" />
             </div>
 
-            <div>
+            <div style="margin-top: 20px">
                 <x-label for="event_time" value="{{ __('Event Time') }}" />
                 <x-input id="event_time" class="block mt-1 w-full" type="time" name="event_time" :value="old('event_time')" required autofocus autocomplete="event_time" />
             </div>
 
-            <div>
+            <div style="margin-top: 20px">
                 <x-label for="event_address" value="{{ __('Event Address') }}" />
                 <x-input id="event_address" class="block mt-1 w-full" type="text" name="event_address" :value="old('event_address')" required autofocus autocomplete="event_address" />
             </div>
@@ -41,5 +42,5 @@
                 </x-button>
             </div>
         </form>
-    </x-booking-card>
+</div>
 </x-app-layout>
