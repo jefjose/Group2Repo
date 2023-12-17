@@ -65,7 +65,7 @@ Route::get('/admin', function () {
 
 Route::patch('bookings/{booking}', function (Request $request, Booking $booking) {
     $request->validate([
-        'status' => 'required|in:For Review,Rejected,For Approval,Approved',
+        'status' => 'required|in:For Review,Rejected,Approved',
     ]);
 
     $booking->update(['status' => $request->input('status')]);

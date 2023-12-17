@@ -1,4 +1,4 @@
-<x-app-layout>  
+<x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -20,7 +20,7 @@
                         </thead>
                         <tbody>
                             @foreach ($bookings as $booking)
-                                @if ($booking->status === 'For Review' || $booking->status === 'For Approval')
+                                @if ($booking->status === 'For Review')
                                     <tr>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->email }}</td>
@@ -33,7 +33,8 @@
                                             {{ \Carbon\Carbon::parse($booking->event_time)->format('h:i A') }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}</td>
                                         <td class="border border-gray-300 px-4 py-2">
-                                            <form action="{{ route('booking.update', $booking->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to update this appointment?')">
+                                            <form action="{{ route('booking.update', $booking->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to update this appointment?')">
                                                 @csrf
                                                 @method('PATCH')
                                                 <select name="status"
@@ -42,9 +43,6 @@
                                                         {{ $booking->status == 'For Review' ? 'selected' : '' }}>For
                                                         Review
                                                     </option>
-                                                    <option value="For Approval"
-                                                        {{ $booking->status == 'For Approval' ? 'selected' : '' }}>For
-                                                        Approval</option>
                                                     <option value="Approved"
                                                         {{ $booking->status == 'Approved' ? 'selected' : '' }}>Approved
                                                     </option>
@@ -56,6 +54,7 @@
                                         <td class="border border-gray-300 px-4 py-2">
                                             <button type="submit"
                                                 class="text-blue-600 hover:text-blue-900">Update</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endif
@@ -93,8 +92,8 @@
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->status }}</td>
                                         <td class="border border-gray-300 px-4 py-2">
-                                            <form action="{{ route('booking.destroy', $booking->id) }}"
-                                                method="POST" onsubmit="return confirm('Are you sure you want to delete this appoointment?')">
+                                            <form action="{{ route('booking.destroy', $booking->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this appoointment?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
@@ -144,8 +143,8 @@
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->status }}</td>
                                         <td class="border border-gray-300 px-4 py-2">
-                                            <form action="{{ route('booking.destroy', $booking->id) }}"
-                                                method="POST" onsubmit="return confirm('Are you sure you want to delete this appoointment?')">
+                                            <form action="{{ route('booking.destroy', $booking->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this appoointment?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
@@ -178,7 +177,7 @@
                         // Retrieve only soft-deleted bookings
                         $deletedBookings = \App\Models\Booking::onlyTrashed()->get();
                     @endphp
-        
+
                     @if (count($deletedBookings) > 0)
                         <p class="text-white" style="margin-bottom: 10px"><b>Recent Bookings</b></p>
                         <table class="w-full border border-gray-300 text-white">
@@ -201,11 +200,15 @@
                                         <!-- Row content -->
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->email }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $booking->user->phone_number }}</td>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ $booking->user->phone_number }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->event_type }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ \Carbon\Carbon::parse($booking->event_date)->format('m/d/Y') }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ \Carbon\Carbon::parse($booking->event_time)->format('h:i A') }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}</td>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->event_date)->format('m/d/Y') }}</td>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->event_time)->format('h:i A') }}</td>
+                                        <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}
+                                        </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->status }}</td>
                                     </tr>
                                 @endforeach
@@ -217,5 +220,5 @@
                 </div>
             </div>
         </div>
-        
+
 </x-app-layout>
