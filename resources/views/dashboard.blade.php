@@ -21,7 +21,7 @@
                                 <th class="border border-gray-300 px-4 py-2">Event Type</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Time</th>
-                                <th class="border border-gray-300 px-4 py-2">Event Address</th>
+                                <th class="border border-gray-300 px-4 py-2">Ideal Event Venue</th>
                                 <th class="border border-gray-300 px-4 py-2">Status</th>
                             </tr>
                         </thead>

@@ -23,14 +23,16 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('is_admin')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'phone_number' => '09284990222',
-            'password' => Hash::make('1234'),
+            'phone_number' => '09284990490',
+            'password' => Hash::make('Admin1234!'),
             'is_admin' => true,
+            'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -38,8 +40,19 @@ return new class extends Migration
         DB::table('users')->insert([
             'name' => 'user',
             'email' => 'user@gmail.com',
-            'phone_number' => '09284990223',
-            'password' => Hash::make('1234'),
+            'phone_number' => '09284990491',
+            'password' => Hash::make('User1234!'),
+            'is_admin' => false,
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'jefjose',
+            'email' => 'joshuaemmanuel.jose.cics@ust.edu.ph',
+            'phone_number' => '09284990492',
+            'password' => Hash::make('Josh1234!'),
             'is_admin' => false,
             'created_at' => now(),
             'updated_at' => now(),

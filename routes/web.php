@@ -30,14 +30,14 @@ Route::get('/dashboard', function () {
 
 Route::get('/book', function () {
     return view('book');
-})->name('book')->middleware('auth', 'registered');
+})->name('book')->middleware('auth', 'registered', 'verified');
 
 Route::post('/booking', function (Request $request) {
     $data = $request->validate([
-        'event_type' => 'required',
+        'event_type' => 'required|max:255',
         'event_date' => 'required|date',
         'event_time' => 'required|date_format:H:i',
-        'event_address' => 'required',
+        'event_address' => 'required|max:255',
     ]);
 
     $data['user_id'] = Auth::user()->id;
@@ -48,7 +48,7 @@ Route::post('/booking', function (Request $request) {
     Booking::create($data);
 
     return Redirect::route('home')->with('success', 'Booking created successfully');
-})->name('booking.store')->middleware('auth', 'registered');
+})->name('booking.store')->middleware('auth', 'registered', 'verified');
 
 Route::get('/about', function () {
     return view('about');

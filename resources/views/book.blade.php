@@ -14,7 +14,15 @@
 
             <div style="margin-top: 20px">
                 <x-label for="event_type" value="{{ __('Event Type') }}" />
-                <x-input id="event_type" class="block mt-1 w-full" type="text" name="event_type" :value="old('event_type')" required autofocus autocomplete="event_type" />
+                <select id="event_type" class="block mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded" name="event_type" required autofocus autocomplete="event_type">
+                    <option value="" disabled selected>Select an Event Type</option>
+                    <option value="Birthday Party">Birthday Party</option>
+                    <option value="Wedding Reception">Wedding Reception</option>
+                    <option value="Corporate Event">Corporate Event</option>
+                    <option value="Baptism Reception">Baptism Reception</option>
+                    <option value="Family Reunion">Family Reunion</option>
+                    <option value="Engagement Party">Engagement Party</option>
+                </select>
             </div>
 
             @php
@@ -23,17 +31,17 @@
 
             <div style="margin-top: 20px">
                 <x-label for="event_date" value="{{ __('Event Date') }}" />
-                <x-input id="event_date" class="block mt-1 w-full" type="date" name="event_date" :value="old('event_date')" min="{{ $minDate }}" required autofocus autocomplete="event_date" />
+                <input id="event_date" class="block mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded" type="date" name="event_date" :value="old('event_date')" min="{{ $minDate }}" required autofocus autocomplete="event_date" />
             </div>
 
             <div style="margin-top: 20px">
                 <x-label for="event_time" value="{{ __('Event Time') }}" />
-                <x-input id="event_time" class="block mt-1 w-full" type="time" name="event_time" :value="old('event_time')" required autofocus autocomplete="event_time" />
+                <input id="event_time" class="block mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded" type="time" name="event_time" :value="old('event_time')" required autofocus autocomplete="event_time" />
             </div>
 
             <div style="margin-top: 20px">
-                <x-label for="event_address" value="{{ __('Event Address') }}" />
-                <x-input id="event_address" class="block mt-1 w-full" type="text" name="event_address" :value="old('event_address')" required autofocus autocomplete="event_address" />
+                <x-label for="event_address" value="{{ __('Ideal Event Venue') }}" />
+                <input id="event_address" class="block mt-1 w-full bg-gray-800 text-white border border-gray-600 p-2 rounded" type="text" maxlength="255" name="event_address" :value="old('event_address')" required autofocus autocomplete="event_address" />
             </div>
 
             <div class="flex items-center justify-end mt-4">

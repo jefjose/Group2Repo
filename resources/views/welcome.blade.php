@@ -8,7 +8,7 @@
 
 <head>
 <style>
-.container{
+.container-home{
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/background.jpg);
@@ -75,7 +75,7 @@ h5{
 </head>
 
 <body>
-        <div class="container">
+        <div class="container-home">
             <div class="row">
                 <div class="col">
                     <h1>UrbanReserve</h1>

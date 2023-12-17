@@ -8,7 +8,7 @@
 
 <head>
 <style>
-.container{
+.container-index{
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)),url(images/urbanreserve_index.png);
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-        <div class="container">
+        <div class="container-index">
             
 
         </div>

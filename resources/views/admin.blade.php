@@ -1,27 +1,34 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
                 @if (count($bookings) > 0)
                     <p class="text-white" style="margin-bottom: 10px"><b>Unapproved Bookings</b></p>
                     <table class="w-full border border-gray-300 text-white">
                         <thead>
                             <tr>
+                                <th class="border border-gray-300 px-4 py-2">Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Name</th>
                                 <th class="border border-gray-300 px-4 py-2">Email</th>
                                 <th class="border border-gray-300 px-4 py-2">Phone Number</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Type</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Time</th>
-                                <th class="border border-gray-300 px-4 py-2">Event Address</th>
+                                <th class="border border-gray-300 px-4 py-2">Ideal Event Venue</th>
                                 <th class="border border-gray-300 px-4 py-2">Status</th>
                                 <th class="border border-gray-300 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bookings as $booking)
+                            @php
+                                $unapprovedBookings = $bookings->where('status', 'For Review')->sortBy('created_at');
+                            @endphp
+                            @foreach ($unapprovedBookings as $booking)
                                 @if ($booking->status === 'For Review')
                                     <tr>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->created_at)->format('m/d/Y') }}
+                                        </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->email }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->phone_number }}
@@ -65,21 +72,28 @@
                     <table class="w-full border border-gray-300 text-white">
                         <thead>
                             <tr>
+                                <th class="border border-gray-300 px-4 py-2">Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Name</th>
                                 <th class="border border-gray-300 px-4 py-2">Email</th>
                                 <th class="border border-gray-300 px-4 py-2">Phone Number</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Type</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Time</th>
-                                <th class="border border-gray-300 px-4 py-2">Event Address</th>
+                                <th class="border border-gray-300 px-4 py-2">Ideal Event Venue</th>
                                 <th class="border border-gray-300 px-4 py-2">Status</th>
                                 <th class="border border-gray-300 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bookings as $booking)
+                            @php
+                                $approvedBookings = $bookings->where('status', 'Approved')->sortBy('event_date');
+                            @endphp
+                            @foreach ($approvedBookings as $booking)
                                 @if ($booking->status === 'Approved')
                                     <tr>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->created_at)->format('m/d/Y') }}
+                                        </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->email }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->phone_number }}
@@ -116,21 +130,28 @@
                     <table class="w-full border border-gray-300 text-white">
                         <thead>
                             <tr>
+                                <th class="border border-gray-300 px-4 py-2">Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Name</th>
                                 <th class="border border-gray-300 px-4 py-2">Email</th>
                                 <th class="border border-gray-300 px-4 py-2">Phone Number</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Type</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Event Time</th>
-                                <th class="border border-gray-300 px-4 py-2">Event Address</th>
+                                <th class="border border-gray-300 px-4 py-2">Ideal Event Venue</th>
                                 <th class="border border-gray-300 px-4 py-2">Status</th>
                                 <th class="border border-gray-300 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bookings as $booking)
+                            @php
+                                $rejectedBookings = $bookings->where('status', 'Rejected')->sortBy('created_at');
+                            @endphp
+                            @foreach ($rejectedBookings as $booking)
                                 @if ($booking->status === 'Rejected')
                                     <tr>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->created_at)->format('m/d/Y') }}
+                                        </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->email }}</td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->user->phone_number }}
@@ -171,11 +192,13 @@
         </div>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
                     @php
                         // Retrieve only soft-deleted bookings
-                        $deletedBookings = \App\Models\Booking::onlyTrashed()->get();
+                        $deletedBookings = \App\Models\Booking::onlyTrashed()
+                            ->get()
+                            ->sortByDesc('deleted_at');
                     @endphp
 
                     @if (count($deletedBookings) > 0)
@@ -190,8 +213,9 @@
                                     <th class="border border-gray-300 px-4 py-2">Event Type</th>
                                     <th class="border border-gray-300 px-4 py-2">Event Date</th>
                                     <th class="border border-gray-300 px-4 py-2">Event Time</th>
-                                    <th class="border border-gray-300 px-4 py-2">Event Address</th>
+                                    <th class="border border-gray-300 px-4 py-2">Ideal Event Venue</th>
                                     <th class="border border-gray-300 px-4 py-2">Status</th>
+                                    <th class="border border-gray-300 px-4 py-2">Deleted</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,6 +234,9 @@
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->event_address }}
                                         </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $booking->status }}</td>
+                                        <td class="border border-gray-300 px-4 py-2">
+                                            {{ \Carbon\Carbon::parse($booking->deleted_at)->format('m/d/Y') }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -220,5 +247,5 @@
                 </div>
             </div>
         </div>
-
+        
 </x-app-layout>

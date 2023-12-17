@@ -3,7 +3,7 @@
 <head>
     
     <style>
-.container{
+.container-about{
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/background.jpg);
@@ -74,7 +74,7 @@ p {
 </head>
 <body>
 
-<div class="container">
+<div class="container-about">
 
     <div class="section">
 <br><br><br><br>
