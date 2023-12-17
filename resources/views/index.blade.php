@@ -1,7 +1,5 @@
 <x-app-layout>
 
-        <link rel="stylesheet" href="{{ asset('css/style-index.css') }}">
-
             <div class="row">
 
                 <div class="shrink-0 flex items-center">

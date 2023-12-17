@@ -17,7 +17,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Custom Styles -->
+    
     <link rel="stylesheet" href="{{ asset('css/background.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-index.css') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -171,7 +173,7 @@
             }, 3000);
         </script>
 
-        <main class="background">
+        <main>
             {{ $slot }}
         </main>
     </div>
